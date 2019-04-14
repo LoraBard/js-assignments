@@ -88,7 +88,30 @@ function* expandBraces(str) {
  *
  */
 function getZigZagMatrix(n) {
-    throw new Error('Not implemented');
+    let x=0,count=0,arr=[];
+    for(let k=0;k<n;++k){
+        arr[k]=[];
+    }
+    for(let j=0;j<n;++j){
+        x=j;
+        if(j%2===0) {
+            for (let i = 0; i <= j; ++i, --x){
+                arr[x][i] = count++;
+                if(arr.indexOf(n-count-1)==-1){
+                    arr[n - 1 - x][n - 1 - i] = (n*n - count);
+                }
+            }
+        }
+            else{
+            for (let i = 0; i <= j; ++i, --x){
+                arr[i][x] = count++;
+                if(arr.indexOf(n - count - 1)==-1){
+                    arr[n - 1 - i][n - 1 - x] = (n*n - count );
+                }
+            }
+        }
+    }
+    return arr;
 }
 
 
